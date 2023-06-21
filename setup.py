@@ -14,7 +14,7 @@ extras_require = {
         "mypy>=0.991,<1",  # Static type analyzer
         "types-setuptools",  # Needed for mypy type shed
         "flake8>=6.0.0,<7",  # Style linter
-        "isort>=5.10.1,<6",  # Import sorting linter
+        "isort>=5.10.1",  # Import sorting linter
         "mdformat>=0.7.16",  # Auto-formatter for markdown
         "mdformat-gfm>=0.3.5",  # Needed for formatting GitHub-flavored markdown
         "mdformat-frontmatter>=0.4.1",  # Needed for frontmatters-style headers in issue templates
@@ -26,7 +26,7 @@ extras_require = {
     ],
     "dev": [
         "commitizen",  # Manage commits and publishing releases
-        "pre-commit",  # Ensure that linters are run prior to committing
+        "pre-commit",  # Ensure that linters are run prior to commiting
         "pytest-watch",  # `ptw` test watcher/runner
         "IPython",  # Console for interacting
         "ipdb",  # Debugger (Must use `export PYTHONBREAKPOINT=ipdb.set_trace`)
@@ -49,22 +49,24 @@ setup(
     name="ape-kava",
     use_scm_version=True,
     setup_requires=["setuptools_scm"],
-    description="""ape-kava: Ape Ecosystem Plugin for Kava""",
+    description="""ape-kava: Ecosystem plugin for Kava""",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    author="ApeWorX Ltd.",
-    author_email="admin@apeworx.io",
-    url="https://github.com/ApeWorX/ape-kava",
+    author="ApeWorX Ltd. | Kava",
+    author_email="raghu.thiyagharajan@kava.io",
+    url="https://github.com/0xRaghu/ape-kava",
     include_package_data=True,
-    install_requires=[],
+    install_requires=[
+        "eth-ape>=0.6.0,<0.7",
+    ],
     python_requires=">=3.8,<4",
     extras_require=extras_require,
-    py_modules=["ape-kava"],
+    py_modules=["ape_kava"],
     license="Apache-2.0",
     zip_safe=False,
     keywords="ethereum",
     packages=find_packages(exclude=["tests", "tests.*"]),
-    package_data={"ape-kava": ["py.typed"]},
+    package_data={"ape_kava": ["py.typed"]},
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",

@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Type, Union, cast
 
 from ape.api.config import PluginConfig
 from ape.api.networks import LOCAL_NETWORK_NAME
@@ -7,17 +7,16 @@ from ape_ethereum.ecosystem import Ethereum, NetworkConfig
 NETWORKS = {
     # chain_id, network_id
     "mainnet": (2222, 2222),
-    "testnet": (2221, 2221)
+    "testnet": (2221, 2221),
 }
 
 
 def _create_network_config(
     required_confirmations: int = 1, block_time: int = 6, **kwargs
 ) -> NetworkConfig:
-    # Helper method to isolate `type: ignore` comments.
     return NetworkConfig(
         required_confirmations=required_confirmations, block_time=block_time, **kwargs
-    )  # type: ignore
+    )
 
 
 def _create_local_config(default_provider: Optional[str] = None) -> NetworkConfig:
@@ -28,7 +27,9 @@ def _create_local_config(default_provider: Optional[str] = None) -> NetworkConfi
 
 class KavaConfig(PluginConfig):
     mainnet: NetworkConfig = _create_network_config()
+    mainnet_fork: NetworkConfig = _create_local_config()
     testnet: NetworkConfig = _create_network_config()
+    testnet_fork: NetworkConfig = _create_local_config()
     local: NetworkConfig = _create_local_config(default_provider="test")
     default_network: str = LOCAL_NETWORK_NAME
 

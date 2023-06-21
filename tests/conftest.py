@@ -22,3 +22,9 @@ def runner():
 @pytest.fixture
 def cli():
     return ape_cli
+
+
+@pytest.fixture
+def local_network(networks):
+    with networks["kava"].local.use_provider("test"):
+        yield
